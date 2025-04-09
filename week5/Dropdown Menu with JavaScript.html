@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dropdownmenu</title>
+    <style>
+      body {
+        background-color: white;
+      }
+      h1,
+      h2 {
+        font-size: 4vh;
+        margin: 5px;
+        animation: 3s h1color infinite;
+        transition: 0.1s ease-in-out;
+        margin-right: 50px;
+      }
+      @keyframes h1color {
+        0% {
+          color: rgb(0, 0, 0);
+        }
+        25% {
+          color: rgb(13, 236, 229);
+        }
+        50% {
+          color: rgb(4, 223, 44);
+        }
+        100% {
+          color: rgb(245, 47, 7);
+        }
+      }
+      h2:hover {
+        transform: scale(1.2);
+        background-color: rgba(255, 255, 255, 0.219);
+        padding: 0px 10px;
+        cursor: pointer;
+      }
+
+      nav {
+        background: rgba(0, 0, 0, 0.555);
+        padding: 10px 10%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .sub-menu {
+        max-height: 0;
+        overflow: hidden;
+        margin-left: 70%;
+        font-size: 3vh;
+        background-color: rgba(0, 0, 0, 0.555);
+        text-align: center;
+        color: white;
+        transition: max-height 0.5s;
+      }
+      .sub-menu.open {
+        max-height: 225px;
+      }
+      .sub-menu ul {
+        padding: 0px;
+        margin-top: 0px;
+        height: 100%;
+      }
+      .sub-menu ul li {
+        list-style: none;
+        padding: 10px;
+      }
+      .sub-menu ul li:hover {
+        background-color: rgba(255, 255, 255, 0.219);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <head>
+      <nav>
+        <h1>Title</h1>
+        <h2 onclick="openMenu()">Menu</h2>
+      </nav>
+      <div class="sub-menu" id="subMenu">
+        <ul id="list">
+          <li>profile</li>
+          <li>setting</li>
+          <li>exit</li>
+        </ul>
+      </div>
+    </head>
+    <script>
+      let menu = document.getElementById("subMenu");
+      let list = document.getElementById("list");
+      function openMenu() {
+        menu.classList.toggle("open");
+      }
+      document.addEventListener("click", function (event) {
+        if (!menu.contains(event.target) && !event.target.matches("h2")) {
+          menu.classList.remove("open");
+        }
+      });
+    </script>
+  </body>
+</html>

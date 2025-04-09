@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome Message</title>
+  </head>
+  <body>
+    <div
+      id="welcome-message"
+      style="text-align: center; padding-top: 10%"
+    ></div>
+    <script>
+      function setWelcomeMessage() {
+        const welcomeDiv = document.getElementById("welcome-message");
+        const currentHour = new Date().getHours();
+
+        if (currentHour < 12) {
+          welcomeDiv.innerText = "Good morning! Welcome to My Portfolio!";
+        } else {
+          welcomeDiv.innerText = "Good evening! Welcome to My Portfolio!";
+        }
+      }
+
+      window.onload = setWelcomeMessage;
+    </script>
+  </body>
+</html>

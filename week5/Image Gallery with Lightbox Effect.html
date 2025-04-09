@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: linear-gradient(
+          to right,
+          rgb(226, 81, 81),
+          rgb(205, 205, 45),
+          rgb(60, 60, 216)
+        );
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+      h1 {
+        color: rgb(6, 6, 6);
+        font-size: 5vh;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+      .galleryDiv {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .galleryDiv img {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.2s ease-in-out;
+      }
+      .galleryDiv img:hover {
+        transform: scale(1.01);
+        box-shadow: 5px 5px 5px 0px;
+      }
+      .lightbox {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(54, 67, 82, 0.76);
+      }
+      .lightbox img {
+        width: 80%;
+        height: 80%;
+      }
+      .controls {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+      .close {
+        width: 10%;
+        margin: 10px;
+        font-size: 2vh;
+      }
+      button {
+        background-color: rgba(255, 255, 255, 0.185);
+        border: none;
+      }
+      button:hover {
+        background-color: rgb(255, 255, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <head>
+      <h1>Movie Scenes</h1>
+    </head>
+    <div class="galleryDiv">
+      <img
+        src="https://www.travelandleisure.com/thmb/honNlPnhpFs7Ts05ACpMI8unKuA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/catch-me-if-you-can-PLANEMOVIES1119-f2c21d3bca1d4f29be3ed39af3cbe69d.jpg"
+        alt=""
+        onclick="opening(0)"
+      />
+      <img
+        src="https://imageio.forbes.com/specials-images/imageserve/65cb5d57135fc82e73944acb/classic-90s-movie--The-Shawshank-Redemption--/960x0.jpg?format=jpg&width=960"
+        alt=""
+        onclick="opening(1)"
+      />
+      <img
+        src="https://static.boredpanda.com/blog/wp-content/uploads/2015/08/epic-movie-scenes-screenshots-85__880.jpg"
+        alt=""
+        onclick="opening(2)"
+      />
+      <img
+        src="https://lumiere-a.akamaihd.net/v1/images/star-wars-movies-and-series-guide-article-feature_a12ab7bb.jpeg"
+        alt=""
+        onclick="opening(3)"
+      />
+      <img
+        src="https://static.demilked.com/wp-content/uploads/2019/07/5d2327d28ead0-behind-the-scenes-of-hollywood-movies-16-5d1b632a8da94__700.jpg"
+        alt=""
+        onclick="opening(4)"
+      />
+      <img
+        src="https://static.boredpanda.com/blog/wp-content/uploads/2015/08/epic-movie-scenes-screenshots-45__880.jpg"
+        alt=""
+        onclick="opening(5)"
+      />
+    </div>
+    <div class="lightbox" id="lightbox">
+      <button class="close" onclick="closing()">X</button>
+      <div class="controls">
+        <button onclick="prev()">&#10094;</button>
+        <img
+          id="lightbox-img"
+          src="https://static.boredpanda.com/blog/wp-content/uploads/2015/08/epic-movie-scenes-screenshots-45__880.jpg"
+          alt=""
+        />
+        <button onclick="next()">&#10095;</button>
+      </div>
+    </div>
+    <script>
+      const images = document.querySelectorAll("img");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      let index = 0;
+
+      function opening(a) {
+        index = a;
+        console.log(index);
+        lightbox.style.display = "block";
+        lightboxImg.src = images[index].src;
+      }
+      function closing() {
+        lightbox.style.display = "none";
+      }
+      function prev() {
+        index = index - 1;
+        console.log(index);
+        if (index < 0) {
+          index = images.length - 1;
+        }
+        lightboxImg.src = images[index].src;
+      }
+      function next() {
+        index = index + 1;
+        if (index >= images.length) {
+          index = 0;
+        }
+        lightboxImg.src = images[index].src;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio - Home</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>I'm a developer passionate about creating awesome projects!</p>
+      </section>
+
+      <section class="projects-preview">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+          <% projects.slice(0, 2).forEach(project => { %>
+          <div class="project-card">
+            <!-- Added image here -->
+            <img
+              src="<%= project.image %>"
+              alt="<%= project.title %>"
+              class="project-image"
+            />
+            <h3><%= project.title %></h3>
+            <p><%= project.description %></p>
+          </div>
+          <% }); %>
+        </div>
+        <a href="/projects" class="btn">View All Projects</a>
+      </section>
+
+      <section class="blog-preview">
+        <h2>Latest Blog Posts</h2>
+        <div class="blog-grid">
+          <% blogPosts.slice(0, 1).forEach(post => { %>
+          <div class="blog-card">
+            <h3><%= post.title %></h3>
+            <p><%= post.content.substring(0, 100) %>...</p>
+            <a href="/blog" class="btn">Read More</a>
+          </div>
+          <% }); %>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>
+        &copy; <%= new Date().getFullYear() %> My Portfolio. All rights
+        reserved.
+      </p>
+    </footer>
+  </body>
+</html>

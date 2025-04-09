@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+    <style>
+      body {
+        background-color: gray;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+      }
+      label {
+        padding: 10px;
+      }
+      input,
+      textarea {
+        background-color: rgba(233, 231, 227, 0.418);
+      }
+      button {
+        background-color: rgba(0, 0, 0, 0.596);
+        color: white;
+      }
+      .red {
+        color: red;
+      }
+      .green {
+        color: rgb(2, 255, 2);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="mainForm" action="">
+      <label for="name">Name: <input type="text" id="name" /></label>
+      <label for="email">Email: <input type="email" id="email" /></label>
+      <label for="message"
+        >Message: <textarea name="" id="message"></textarea>
+      </label>
+      <button type="submit">Submit</button>
+      <div>
+        <p id="inputCheck"></p>
+      </div>
+    </form>
+
+    <script>
+      document
+        .getElementById("mainForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          let name = document.getElementById("name").value.trim();
+          let email = document.getElementById("email").value.trim();
+          let message = document.getElementById("message").value.trim();
+          let inputCheck = document.getElementById("inputCheck");
+          let allCheck = document.getElementById("allCheck");
+          let errors = [];
+          inputCheck.textContent = "";
+
+          if (!name) errors.push("Name");
+          if (!email) errors.push("Email");
+          if (!message) errors.push("Message");
+
+          if (errors.length > 0) {
+            inputCheck.classList.toggle("red");
+            if (errors.length == 1) {
+              inputCheck.textContent = errors + " is required";
+            } else {
+              inputCheck.textContent = errors.join(", ") + " are required";
+            }
+          } else {
+            inputCheck.classList.toggle("green");
+            inputCheck.textContent = "Form submitted successfully!";
+          }
+        });
+    </script>
+  </body>
+</html>

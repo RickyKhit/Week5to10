@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header></header>
+
+    <main class="confirmation-container">
+      <h1>Thank You, <%= name %>!</h1>
+      <p>We've received your message and will respond to <%= email %> soon.</p>
+
+      <div class="message-preview">
+        <h3>Your Message:</h3>
+        <p><%= message %></p>
+      </div>
+
+      <% if (submissions && submissions.length > 0) { %>
+      <div class="submissions">
+        <h3>Recent Messages</h3>
+        <% submissions.forEach((sub, index) => { %>
+        <div class="submission">
+          <p><strong>From:</strong> <%= sub.name %> (<%= sub.email %>)</p>
+          <p><%= sub.message %></p>
+          <small>Submitted: <%= sub.date %></small>
+        </div>
+        <% }); %>
+      </div>
+      <% } %>
+
+      <a href="/contact" class="btn">Send Another Message</a>
+    </main>
+  </body>
+</html>

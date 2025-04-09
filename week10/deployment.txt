@@ -1,0 +1,6 @@
+2 static sites
+https://rickykhit.github.io/NewsWebsite/
+https://rickykhit.github.io/Recipe/
+
+Web serive on render
+https://reviewshub-6rap.onrender.com

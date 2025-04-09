@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+    <style>
+      body {
+        background-color: rgb(193, 252, 0);
+        justify-self: center;
+        align-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10%;
+      }
+      p {
+        font-size: 5vh;
+        border: solid black;
+        padding: 20px;
+        width: 300px;
+        margin: 5px;
+        text-align: center;
+      }
+      input {
+        background-color: rgba(255, 255, 255, 0.521);
+        border: none;
+        padding: 20px;
+      }
+      button {
+        padding: 20px;
+        width: 50%;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="countdown">Enter seconds</p>
+    <input type="number" id="inputSeconds" placeholder="Seconds" />
+    <br />
+    <button onclick="startTimer()">Start Timer</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
+    <script>
+      let timer = 0;
+      let countdown;
+      const display = document.getElementById("countdown");
+
+      function startTimer() {
+        const input = document.getElementById("inputSeconds").value;
+        if (input && !timer) {
+          countdown = parseInt(input) + 1;
+          timer = setInterval(() => {
+            if (countdown > 0) {
+              countdown--;
+              display.textContent = countdown;
+            } else {
+              clearInterval(timer);
+              countdown = "0";
+              display.textContent = "Time's up";
+            }
+          }, 1000);
+        }
+      }
+
+      function pauseTimer() {
+        clearInterval(timer);
+        timer = null;
+        display.textContent = "paused";
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = null;
+        countdown = 0;
+        display.textContent = "reseted";
+        document.getElementById("inputSeconds").value = "";
+      }
+    </script>
+  </body>
+</html>

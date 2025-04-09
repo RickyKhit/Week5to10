@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Speed Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+      }
+
+      #timer {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      #result {
+        margin-top: 1rem;
+        font-weight: bold;
+      }
+
+      #highlightedOutput span.wrong {
+        color: red;
+        font-weight: bold;
+      }
+
+      #textInput {
+        width: 100%;
+        height: 150px;
+        font-size: 1rem;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Typing Speed Test</h1>
+    <div id="timer">Time: 30s</div>
+    <textarea id="textInput" placeholder="Start typing here..."></textarea>
+    <div id="result"></div>
+    <div id="highlightedOutput"></div>
+
+    <script>
+      const textInput = document.getElementById("textInput");
+      const timerEl = document.getElementById("timer");
+      const resultEl = document.getElementById("result");
+      const highlightEl = document.getElementById("highlightedOutput");
+
+      const dictionary = [
+        "hello",
+        "this",
+        "is",
+        "a",
+        "test",
+        "typing",
+        "speed",
+        "check",
+        "example",
+        "text",
+        "with",
+        "some",
+        "common",
+        "words",
+      ];
+
+      let time = 10;
+      let timerStarted = false;
+      let timer;
+
+      function startTimer() {
+        if (timerStarted) return;
+        timerStarted = true;
+
+        timer = setInterval(() => {
+          time--;
+          timerEl.textContent = `Time: ${time}s`;
+
+          if (time === 0) {
+            clearInterval(timer);
+            textInput.disabled = true;
+            calculateResult();
+          }
+        }, 1000);
+      }
+
+      function calculateResult() {
+        const inputText = textInput.value.trim();
+        const words = inputText.split(/\s+/);
+        const wordCount = words.filter((word) => word !== "").length;
+
+        resultEl.textContent = `You typed ${wordCount} words.`;
+
+        highlightEl.innerHTML = words
+          .map((word) => {
+            const cleanWord = word.toLowerCase().replace(/[^a-z]/g, "");
+            return `<span class="${
+              dictionary.includes(cleanWord) ? "" : "wrong"
+            }">${word}</span>`;
+          })
+          .join(" ");
+      }
+
+      textInput.addEventListener("keydown", startTimer);
+    </script>
+  </body>
+</html>
